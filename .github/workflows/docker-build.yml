@@ -2,7 +2,7 @@ name: Build and Push Docker Image
 
 on:
   push:
-    branches: [ "main" ]  # Déclenche le workflow uniquement sur la branche main
+    branches: [ "main" ]  # Déclenche le workflow uniquement sur main
 
 jobs:
   build:
@@ -13,21 +13,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Étape 2 : vérification du secret username (facultatif pour debug)
-      - name: Check username secret
-        run: echo "Docker username is ${{ secrets.DOCKER_USERNAME }}"
-
-      # Étape 3 : connexion à Docker Hub avec token
+      # Étape 2 : connexion à Docker Hub
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}       # ton username Docker Hub
-          password: ${{ secrets.DOCKER_PASSWORD }}       # token personnel Docker Hub
+          username: ${{ secrets.DOCKER_USERNAME }}  # ton username Docker Hub
+          password: ${{ secrets.DOCKER_PASSWORD }}  # token personnel Docker Hub
 
-      # Étape 4 : build et push de l'image Docker
+      # Étape 3 : build et push de l'image Docker
       - name: Build and Push Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
-          tags: itdearm23/mon_image_tp:latest
+          tags: itdream23/mon_image_tp:latest

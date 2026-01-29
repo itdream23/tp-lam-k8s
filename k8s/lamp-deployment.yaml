@@ -14,7 +14,6 @@ spec:
     spec:
       containers:
       - name: lamp
-        image: itdearm23/mon_image_tp:latest
+        image: itdream23/mon_image_tp:latest
         ports:
         - containerPort: 80
-
